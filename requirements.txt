@@ -1,0 +1,7 @@
+flask==1.1.2
+plotly==4.1.1
+tensorflow==2.1.0
+numpy==1.19.4
+pandas==1.2.3
+joblib==1.0.1
+gunicorn
