@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 from tensorflow import keras
 
+import os
 from flask import Flask
 from flask import render_template, request, jsonify
 from plotly.graph_objs import Line
@@ -15,16 +16,22 @@ app = Flask(__name__)
 
 
 
+
+FILE_DIR = os.path.dirname(os.path.abspath('__file__'))
+# absolute path to this file's root directory
+PARENT_DIR = os.path.join(FILE_DIR, 'data') 
+
 # load data
-date = pd.read_csv('../data/date.csv')
-test = pd.read_csv('../data/test_data.csv')
-full = pd.read_csv('../data/full_data.csv')
-loss= pd.read_csv('../data/loss.csv')
+date = pd.read_csv(PARENT_DIR+'/date.csv')
+test = pd.read_csv(PARENT_DIR+'/test_data.csv')
+full = pd.read_csv(PARENT_DIR+'/full_data.csv')
+loss= pd.read_csv(PARENT_DIR+'/loss.csv')
 
 
+PARENT_DIR2 = os.path.join(FILE_DIR, 'models') 
 # load model
-model = keras.models.load_model('../models/Doge_Model.h5')
-scaler = joblib.load('../models/scaler.gz')
+model = keras.models.load_model(PARENT_DIR2+'/Doge_Model.h5')
+scaler = joblib.load(PARENT_DIR2+'/scaler.gz')
 
 
 # index webpage displays cool visuals and receives user input text for model
